@@ -165,6 +165,10 @@ export default defineConfig({
     host: true,
   },
   optimizeDeps: {
-    include: ['monaco-editor', 'phaser', '@xenova/transformers'],
+    include: ['monaco-editor', 'phaser', '@xenova/transformers', 'y-indexeddb', 'y-webrtc', 'yjs'],
+    exclude: ['canvas'],
+  },
+  ssr: {
+    external: ['y-indexeddb', 'y-webrtc', 'idb', 'sql.js', 'canvas', '@radix-ui/react-slot', 'monaco-editor'],
   },
 });

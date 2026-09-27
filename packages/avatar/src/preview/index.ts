@@ -1,6 +1,13 @@
 import { AvatarComposer, createAvatarComposer, CompositedAvatar } from '../composer';
 import { AvatarConfig } from '@codeforge/worlds';
 
+let canvas: any = null;
+try {
+  canvas = require('canvas');
+} catch {
+  canvas = null;
+}
+
 export interface PreviewOptions {
   size: number;
   format: 'png' | 'jpeg' | 'webp';
@@ -62,8 +69,11 @@ export class AvatarPreviewGenerator {
 
     const previews = await this.generateMultiplePreviews(variants, opts);
 
-    const canvas = require('canvas').createCanvas(opts.size * variants.length, opts.size);
-    const ctx = canvas.getContext('2d');
+    if (!canvas) {
+      throw new Error('Canvas not available in this environment');
+    }
+    const stripCanvas = canvas.createCanvas(opts.size * variants.length, opts.size);
+    const ctx = stripCanvas.getContext('2d');
 
     for (let i = 0; i < previews.length; i++) {
       const img = await this.loadImage(previews[i]);
@@ -114,8 +124,11 @@ export async function generateAvatarSpriteSheet(
   const cols = 4;
   const rows = Math.ceil(animations.length / cols);
 
-  const canvas = require('canvas').createCanvas(frameSize * cols, frameSize * rows);
-  const ctx = canvas.getContext('2d');
+if (!canvas) {
+      throw new Error('Canvas not available in this environment');
+    }
+    const spriteCanvas = canvas.createCanvas(frameSize * cols, frameSize * rows);
+    const ctx = spriteCanvas.getContext('2d');
 
   for (let i = 0; i < animations.length; i++) {
     const x = (i % cols) * frameSize;
@@ -130,6 +143,19 @@ export async function generateAvatarSpriteSheet(
 }
 
 function loadImage(dataUrl: string): Promise<HTMLImageElement> {
+  if (typeof window === 'undefined') {
+    // Server-side: use canvas if available
+    if (!canvas) {
+      throw new Error('Image loading not available in server environment without canvas');
+    }
+    const img = new canvas.Image();
+    return new Promise((resolve, reject) => {
+      img.onload = () => resolve(img);
+      img.onerror = reject;
+      img.src = dataUrl;
+    });
+  }
+  
   return new Promise((resolve, reject) => {
     const img = new Image();
     img.onload = () => resolve(img);
