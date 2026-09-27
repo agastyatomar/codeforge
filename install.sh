@@ -55,7 +55,7 @@ install_node() {
     
     case "$OS" in
         termux)
-            pkg update && pkg install -y nodejs-lts
+            pkg update && pkg install -y nodejs-lts libvips libvips-dev
             ;;
         linux)
             if has_cmd apt; then

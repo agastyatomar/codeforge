@@ -1,6 +1,12 @@
-import sharp from 'sharp';
 import { createDexieRepository, db } from '@codeforge/data/dexie';
 import { z } from 'zod';
+
+let sharp: any = null;
+try {
+  sharp = (await import('sharp')).default;
+} catch {
+  sharp = null;
+}
 
 export const AssetSchema = z.object({
   id: z.string().uuid(),
@@ -124,6 +130,9 @@ export class AssetManager {
   }
 
   private async optimizeImage(base64: string, mimeType: string, quality: number): Promise<{ data: string; width: number; height: number }> {
+    if (!sharp) {
+      return { data: base64, width: 0, height: 0 };
+    }
     const buffer = Buffer.from(base64, 'base64');
     const image = sharp(buffer);
 
@@ -141,6 +150,9 @@ export class AssetManager {
   }
 
   private async generateThumbnail(base64: string, mimeType: string, size: number, quality: number): Promise<string> {
+    if (!sharp) {
+      return base64;
+    }
     const buffer = Buffer.from(base64, 'base64');
     const thumbnail = await sharp(buffer)
       .resize(size, size, { fit: 'cover', position: 'center' })
@@ -151,6 +163,9 @@ export class AssetManager {
   }
 
   private async getImageMetadata(base64: string, mimeType: string): Promise<{ width: number; height: number }> {
+    if (!sharp) {
+      return { width: 0, height: 0 };
+    }
     const buffer = Buffer.from(base64, 'base64');
     const metadata = await sharp(buffer).metadata();
     return { width: metadata.width || 0, height: metadata.height || 0 };

@@ -25,7 +25,7 @@ fi
 if ! command -v node &>/dev/null || [[ $(node --version | sed 's/v//' | cut -d. -f1) -lt 20 ]]; then
     echo "📦 Installing Node.js..."
     case "$OS" in
-        termux) pkg install -y nodejs-lts ;;
+        termux) pkg install -y nodejs-lts libvips libvips-dev ;;
         linux)  curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash - && sudo apt-get install -y nodejs ;;
         macos)  brew install node@20 ;;
         *) echo "❌ Install Node.js 20+ manually from nodejs.org"; exit 1 ;;

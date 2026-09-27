@@ -462,12 +462,13 @@ importers:
       jszip:
         specifier: ^3.10.1
         version: 3.10.2
-      sharp:
-        specifier: ^0.33.2
-        version: 0.33.5
       zod:
         specifier: ^3.22.4
         version: 3.25.76
+    optionalDependencies:
+      sharp:
+        specifier: ^0.33.2
+        version: 0.33.5
     devDependencies:
       '@types/jszip':
         specifier: ^3.4.1
@@ -10852,6 +10853,7 @@ snapshots:
       '@img/sharp-wasm32': 0.33.5
       '@img/sharp-win32-ia32': 0.33.5
       '@img/sharp-win32-x64': 0.33.5
+    optional: true
 
   shebang-command@2.0.0:
     dependencies:
