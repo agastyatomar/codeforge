@@ -1,0 +1,52 @@
+{
+  "name": "@codeforge/exercise-engine",
+  "version": "0.0.1",
+  "description": "Interactive exercise runner with validation, hints, and progress tracking",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./runners": {
+      "types": "./dist/runners/index.d.ts",
+      "import": "./dist/runners/index.mjs",
+      "require": "./dist/runners/index.js"
+    },
+    "./validators": {
+      "types": "./dist/validators/index.d.ts",
+      "import": "./dist/validators/index.mjs",
+      "require": "./dist/validators/index.js"
+    },
+    "./hints": {
+      "types": "./dist/hints/index.d.ts",
+      "import": "./dist/hints/index.mjs",
+      "require": "./dist/hints/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src --ext ts,tsx",
+    "lint:fix": "eslint src --ext ts,tsx --fix",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@codeforge/core": "workspace:*",
+    "@codeforge/code-execution": "workspace:*",
+    "zod": "^3.22.4",
+    "diff": "^5.1.0"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.2",
+    "typescript": "^5.3.3",
+    "vitest": "^1.3.1",
+    "@types/node": "^20.11.0",
+    "@types/diff": "^5.0.8"
+  }
+}

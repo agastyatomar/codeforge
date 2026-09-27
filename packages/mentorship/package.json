@@ -1,0 +1,46 @@
+{
+  "name": "@codeforge/mentorship",
+  "version": "0.0.1",
+  "description": "Mentorship system, code reviews, pairing, session management",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./matching": {
+      "types": "./dist/matching/index.d.ts",
+      "import": "./dist/matching/index.mjs",
+      "require": "./dist/matching/index.js"
+    },
+    "./code-review": {
+      "types": "./dist/code-review/index.d.ts",
+      "import": "./dist/code-review/index.mjs",
+      "require": "./dist/code-review/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src --ext ts,tsx",
+    "lint:fix": "eslint src --ext ts,tsx --fix",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@codeforge/core": "workspace:*",
+    "@codeforge/data": "workspace:*",
+    "@codeforge/editor": "workspace:*",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.2",
+    "typescript": "^5.3.3",
+    "vitest": "^1.3.1",
+    "@types/node": "^20.11.0"
+  }
+}

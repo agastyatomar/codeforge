@@ -1,0 +1,46 @@
+{
+  "name": "@codeforge/i18n",
+  "version": "0.0.1",
+  "description": "Internationalization with 20+ languages, RTL support, pluralization",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./loader": {
+      "types": "./dist/loader/index.d.ts",
+      "import": "./dist/loader/index.mjs",
+      "require": "./dist/loader/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src --ext ts,tsx",
+    "lint:fix": "eslint src --ext ts,tsx --fix",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "extract": "tsx scripts/extract.ts",
+    "compile": "tsx scripts/compile.ts"
+  },
+  "dependencies": {
+    "@codeforge/core": "workspace:*",
+    "@codeforge/data": "workspace:*",
+    "i18next": "^23.10.1",
+    "i18next-browser-languagedetector": "^7.2.0",
+    "i18next-http-backend": "^2.5.0",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.2",
+    "typescript": "^5.3.3",
+    "vitest": "^1.3.1",
+    "@types/node": "^20.11.0",
+    "tsx": "^4.7.0"
+  }
+}

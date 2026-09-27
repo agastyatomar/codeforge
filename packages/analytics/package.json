@@ -1,0 +1,45 @@
+{
+  "name": "@codeforge/analytics",
+  "version": "0.0.1",
+  "description": "Learning analytics, heatmaps, predictions, and insights",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./tracker": {
+      "types": "./dist/tracker/index.d.ts",
+      "import": "./dist/tracker/index.mjs",
+      "require": "./dist/tracker/index.js"
+    },
+    "./insights": {
+      "types": "./dist/insights/index.d.ts",
+      "import": "./dist/insights/index.mjs",
+      "require": "./dist/insights/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src --ext ts,tsx",
+    "lint:fix": "eslint src --ext ts,tsx --fix",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@codeforge/core": "workspace:*",
+    "@codeforge/data": "workspace:*",
+    "date-fns": "^3.3.1"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.2",
+    "typescript": "^5.3.3",
+    "vitest": "^1.3.1",
+    "@types/node": "^20.11.0"
+  }
+}

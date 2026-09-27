@@ -1,0 +1,55 @@
+{
+  "name": "@codeforge/gamification",
+  "version": "0.0.1",
+  "description": "XP, badges, achievements, streaks, leaderboards, and progression system",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./xp": {
+      "types": "./dist/xp/index.d.ts",
+      "import": "./dist/xp/index.mjs",
+      "require": "./dist/xp/index.js"
+    },
+    "./achievements": {
+      "types": "./dist/achievements/index.d.ts",
+      "import": "./dist/achievements/index.mjs",
+      "require": "./dist/achievements/index.js"
+    },
+    "./leaderboard": {
+      "types": "./dist/leaderboard/index.d.ts",
+      "import": "./dist/leaderboard/index.mjs",
+      "require": "./dist/leaderboard/index.js"
+    },
+    "./streaks": {
+      "types": "./dist/streaks/index.d.ts",
+      "import": "./dist/streaks/index.mjs",
+      "require": "./dist/streaks/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src --ext ts,tsx",
+    "lint:fix": "eslint src --ext ts,tsx --fix",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@codeforge/core": "workspace:*",
+    "@codeforge/data": "workspace:*",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.2",
+    "typescript": "^5.3.3",
+    "vitest": "^1.3.1",
+    "@types/node": "^20.11.0"
+  }
+}

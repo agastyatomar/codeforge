@@ -1,0 +1,46 @@
+{
+  "name": "@codeforge/adaptive",
+  "version": "0.0.1",
+  "description": "Adaptive learning engine with knowledge tracing, personalized recommendations",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./kt": {
+      "types": "./dist/kt/index.d.ts",
+      "import": "./dist/kt/index.mjs",
+      "require": "./dist/kt/index.js"
+    },
+    "./recommender": {
+      "types": "./dist/recommender/index.d.ts",
+      "import": "./dist/recommender/index.mjs",
+      "require": "./dist/recommender/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src --ext ts,tsx",
+    "lint:fix": "eslint src --ext ts,tsx --fix",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@codeforge/core": "workspace:*",
+    "@codeforge/data": "workspace:*",
+    "@codeforge/analytics": "workspace:*",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.2",
+    "typescript": "^5.3.3",
+    "vitest": "^1.3.1",
+    "@types/node": "^20.11.0"
+  }
+}

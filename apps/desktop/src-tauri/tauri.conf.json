@@ -1,0 +1,97 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "CodeForge",
+  "version": "0.0.1",
+  "identifier": "com.codeforge.app",
+  "build": {
+    "beforeDevCommand": "pnpm dev --filter=web",
+    "devUrl": "http://localhost:3000",
+    "beforeBuildCommand": "pnpm build --filter=web",
+    "frontendDist": "../web/dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "CodeForge",
+        "width": 1280,
+        "height": 800,
+        "minWidth": 800,
+        "minHeight": 600,
+        "center": true,
+        "resizable": true,
+        "fullscreen": false,
+        "decorations": true,
+        "transparent": false,
+        "visible": true,
+        "titleBarStyle": "visible"
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "resources": [],
+    "externalBin": [],
+    "copyright": "CodeForge Contributors",
+    "category": "Education",
+    "shortDescription": "Local-first learn to code platform",
+    "longDescription": "CodeForge is a local-first learn to code platform with all features running locally. No cloud required.",
+    "deb": {
+      "depends": ["libwebkit2gtk-4.1-0", "libayatana-appindicator3-1", "librsvg2-common"]
+    },
+    "macOS": {
+      "entitlements": null,
+      "exceptionDomain": "",
+      "frameworks": [],
+      "providerShortName": "CodeForge",
+      "signingIdentity": null
+    },
+    "windows": {
+      "certificateThumbprint": null,
+      "digestAlgorithm": "sha256",
+      "timestampUrl": ""
+    }
+  },
+  "plugins": {
+    "shell": {
+      "open": true
+    },
+    "fs": {
+      "scope": {
+        "allow": ["$APPDATA/**", "$HOME/**", "$TEMP/**"]
+      }
+    },
+    "dialog": {
+      "open": true,
+      "save": true
+    },
+    "notification": {},
+    "updater": {
+      "active": true,
+      "endpoints": ["https://api.codeforge.local/update/{{target}}/{{current_version}}"],
+      "dialog": true,
+      "pubkey": ""
+    },
+    "clipboardManager": {},
+    "globalShortcut": {
+      "shortcuts": {
+        "ctrl+shift+c": "toggle-terminal",
+        "ctrl+shift+a": "toggle-ai-assistant"
+      }
+    },
+    "store": {},
+    "sql": {
+      "allow": ["sqlite:codeforge.db"]
+    }
+  }
+}

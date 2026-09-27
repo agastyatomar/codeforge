@@ -1,0 +1,49 @@
+{
+  "name": "@codeforge/assessment",
+  "version": "0.0.1",
+  "description": "Assessment engine, auto-grading, certification, verifiable credentials",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./grader": {
+      "types": "./dist/grader/index.d.ts",
+      "import": "./dist/grader/index.mjs",
+      "require": "./dist/grader/index.js"
+    },
+    "./certification": {
+      "types": "./dist/certification/index.d.ts",
+      "import": "./dist/certification/index.mjs",
+      "require": "./dist/certification/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src --ext ts,tsx",
+    "lint:fix": "eslint src --ext ts,tsx --fix",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@codeforge/core": "workspace:*",
+    "@codeforge/code-execution": "workspace:*",
+    "@codeforge/exercise-engine": "workspace:*",
+    "zod": "^3.22.4",
+    "pdf-lib": "^1.17.1",
+    "qrcode": "^1.5.3"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.2",
+    "typescript": "^5.3.3",
+    "vitest": "^1.3.1",
+    "@types/node": "^20.11.0",
+    "@types/qrcode": "^1.5.5"
+  }
+}
