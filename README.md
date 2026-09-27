@@ -1,14 +1,26 @@
 # CodeForge - Local-First Learn to Code Platform
 
-A comprehensive, local-first alternative to codedex.io with 150,000+ lines of code, featuring all codedex features PLUS 20+ major enhancements.
+A comprehensive, local-first alternative to codedex.io with all codedex features PLUS 20+ major enhancements. Runs 100% locally on any device.
 
-## Features
+## 🚀 One-Line Install (All Platforms)
+
+```bash
+# Linux / macOS / Termux / WSL / Git Bash
+curl -fsSL https://raw.githubusercontent.com/agastyatomar/codeforge/main/quick-install.sh | bash
+
+# Windows PowerShell
+iwr https://raw.githubusercontent.com/agastyatomar/codeforge/main/install.ps1 | iex
+```
+
+That's it! Installs Node.js, pnpm, Rust, clones repo, installs deps, builds web app.
+
+## ✨ Features
 
 ### Core Learning Platform (codedex.io parity)
 - **Interactive Courses**: Python, HTML, CSS, JavaScript, React, Node.js, SQL, Git, CLI, C++, Java, C#, AI/ML, Game Dev, Data Science
 - **Gamification**: XP, badges, achievements, streaks, leaderboards
 - **Avatar System**: Customizable avatars with 1000+ combinations
-- **Virtual Worlds**: Phaser-based multiplayer worlds for social learning
+- **Virtual Worlds**: Phaser 3 multiplayer worlds for social learning
 - **Code Editor (Builds)**: Multi-file projects, live preview, asset uploads, publishing
 - **AI Companion**: Local LLM integration for code help
 - **Challenge Packs**: Practice exercises with XP rewards
@@ -18,7 +30,7 @@ A comprehensive, local-first alternative to codedex.io with 150,000+ lines of co
 - **Daily Challenges**: New coding challenges every day
 
 ### Enhanced Features (Beyond codedex.io)
-1. **Local LLM Integration**: Ollama + Transformers.js for fully offline AI assistance
+1. **Local LLM Integration**: Ollama + Transformers.js for fully offline AI
 2. **20+ Programming Languages**: Rust, Go, TypeScript, Kotlin, Swift, Lua, Zig, etc.
 3. **Advanced IDE**: Monaco-based with IntelliSense, debugging, Git integration
 4. **Plugin System**: Extensible architecture for courses, languages, tools
@@ -39,69 +51,90 @@ A comprehensive, local-first alternative to codedex.io with 150,000+ lines of co
 19. **Extensible CLI**: Terminal companion for headless operation
 20. **Desktop App**: Tauri v2 native wrapper
 
-## Quick Start
+## 📦 Manual Installation
 
 ### Prerequisites
 - Node.js 20+
 - pnpm 9+
+- Rust 1.70+ (for desktop app)
 
-### Installation
-
+### Standard Install
 ```bash
-# Clone the repository
-git clone https://github.com/your-org/codeforge.git
+# Clone
+git clone https://github.com/agastyatomar/codeforge.git
 cd codeforge
 
-# Install dependencies
-pnpm install
+# Install deps & build
+pnpm install --frozen-lockfile
+pnpm --filter @codeforge/web build
 
-# Start development server
+# Start
 pnpm dev
 ```
 
-### For Local AI (Optional)
+### With All Features (including desktop)
+```bash
+# Auto-installs Node.js, pnpm, Rust if missing
+curl -fsSL https://raw.githubusercontent.com/agastyatomar/codeforge/main/install.sh | bash
+
+# Windows PowerShell
+iwr https://raw.githubusercontent.com/agastyatomar/codeforge/main/install.ps1 | iex
+```
+
+### Optional: Local AI
 ```bash
 # Install Ollama
 curl -fsSL https://ollama.ai/install.sh | sh
 
-# Pull a code model
+# Pull code models
 ollama pull codellama:7b
-# or
 ollama pull deepseek-coder:6.7b
 ```
 
-## Architecture
+## 🏗️ Architecture
 
 ```
 codeforge/
 ├── apps/
-│   ├── web/          # React + Vite PWA
+│   ├── web/          # React 18 + Vite 5 + PWA
 │   ├── desktop/      # Tauri v2 native app
-│   └── cli/          # Terminal companion
-├── packages/
+│   └── cli/          # Commander.js terminal tool
+├── packages/         # 25+ shared packages
 │   ├── core/         # Plugin architecture, events, types
 │   ├── data/         # SQLite + IndexedDB + CRDT sync
 │   ├── course-engine/# Course parser, runtime, importer
 │   ├── exercise-engine/# Runners, validators, hints
 │   ├── code-execution/# WASM runtimes (Pyodide, QuickJS, WebContainer)
 │   ├── editor/       # Monaco, Git, Terminal, Debug, Collaboration
-│   ├── gamification/ # XP, achievements, leaderboard, streaks, rewards
-│   ├── worlds/       # Phaser 3 virtual worlds
-│   ├── avatar/       # Avatar composer, assets, preview
+│   ├── gamification/ # XP, achievements, leaderboard, streaks
+│   ├── worlds/       # Phaser 3 multiplayer worlds
+│   ├── avatar/       # Layer-based avatar composer
 │   ├── community/    # Forum, news, moderation
 │   ├── builds/       # Advanced editor, preview, assets, templates
-│   └── ai-assistant/ # Ollama, Transformers.js, context, completion
+│   ├── ai-assistant/ # Ollama, Transformers.js, context
+│   ├── analytics/    # Tracker, insights, predictions
+│   ├── assessment/   # Auto-grader, rubrics, certification
+│   ├── authoring/    # Visual course builder
+│   ├── competitive/  # Contests, problems, rankings
+│   ├── mentorship/   # Matching, code reviews, sessions
+│   ├── templates/    # 100+ project templates
+│   ├── theming/      # Design tokens, theme engine
+│   ├── i18n/         # 20+ languages, RTL support
+│   ├── a11y/         # WCAG 2.1 AA, screen readers
+│   └── adaptive/     # BKT/DKT knowledge tracing
 ```
 
-## Development
+## 🛠️ Development
 
-### Run Commands
 ```bash
-# Start web dev server
+# Start web dev server (port 3000)
 pnpm dev
 
-# Start desktop dev
+# Start desktop app
 pnpm dev:desktop
+
+# Run CLI
+pnpm dev:cli
 
 # Run all tests
 pnpm test:all
@@ -119,43 +152,25 @@ pnpm format
 pnpm build
 ```
 
-### Adding a New Language
-1. Add language definition in `@codeforge/code-execution/src/runtimes/`
-2. Add Monaco language support in `@codeforge/editor/src/monaco/`
-3. Add exercise validators in `@codeforge/exercise-engine/src/validators/`
-4. Add syntax highlighting in `@codeforge/editor/src/monaco/`
+## 🌍 Cross-Platform Support
 
-### Creating a Course
-```yaml
-# course.yaml
-id: "uuid"
-slug: "my-course"
-title: "My Course"
-description: "Learn something new"
-version: "1.0.0"
-author: "Author Name"
-tags: ["beginner", "web"]
-language: "javascript"
-difficulty: "beginner"
-estimatedHours: 5
-lessons:
-  - "lesson-uuid-1"
-  - "lesson-uuid-2"
-prerequisites: []
-learningObjectives:
-  - "Understand concept A"
-  - "Build project B"
-```
+| Platform | Web App | Desktop App | CLI | Auto-Install |
+|----------|---------|-------------|-----|--------------|
+| Linux    | ✅      | ✅          | ✅  | ✅           |
+| macOS    | ✅      | ✅          | ✅  | ✅           |
+| Windows  | ✅      | ✅          | ✅  | ✅ (PS/WSL)  |
+| Termux   | ✅      | ❌          | ✅  | ✅           |
+| WSL      | ✅      | ✅          | ✅  | ✅           |
 
-## Local-First Design
+## 🔒 Local-First Design
 
-- **No external APIs required** - Everything runs locally
+- **No external APIs** - Everything runs locally
 - **Offline-first** - Service workers, IndexedDB, background sync
 - **No account required** - Optional local user profiles
 - **Data ownership** - All data stored on your machine
 - **Privacy by default** - No telemetry, no tracking
 
-## Contributing
+## 🤝 Contributing
 
 1. Fork the repository
 2. Create a feature branch
@@ -163,11 +178,11 @@ learningObjectives:
 4. Run tests: `pnpm test:all`
 5. Submit a pull request
 
-## License
+## 📄 License
 
 MIT License - see LICENSE file for details
 
-## Acknowledgments
+## 🙏 Acknowledgments
 
 - Inspired by [codedex.io](https://codedex.io)
 - Built with React, Vite, Tailwind, Monaco, Phaser, and many amazing open-source projects
